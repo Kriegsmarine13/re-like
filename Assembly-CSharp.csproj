@@ -61,8 +61,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CallText.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\CharacterController.cs" />
+    <Compile Include="Assets\Scripts\HandgunScript.cs" />
     <Compile Include="Assets\Scripts\SimpleEnemyController.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/drums/Documents/New Unity Project/re-like/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
