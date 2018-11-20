@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterController : MonoBehaviour {
     GameObject gameObject;
@@ -20,6 +21,11 @@ public class CharacterController : MonoBehaviour {
     RaycastHit hit;
     public float collisionCheckFront = 1.2f;
     private string objectDescription;
+    CallText collidedObjectScript;
+    public int textBoxHeightPercent;
+    public int textBoxWidthPercent;
+    public Color guiFieldColor;
+
 
     // Use this for initialization
     void Start()
@@ -96,9 +102,7 @@ public class CharacterController : MonoBehaviour {
             {
                 //Debug.Log("Interacing with " + collidedObject);
                 Debug.Log("Interacting with " + collidedGameObject);
-                //var description = new CallText();
-                //var getText = description.objectDescription;
-                description.RenderText();
+                collidedObjectScript = collidedGameObject.GetComponent<CallText>();
             }
         }
 
@@ -124,10 +128,17 @@ public class CharacterController : MonoBehaviour {
         Debug.Log("Interaction State active!");
     }
 
+    private void OnGUI()
+    {
+        if (collidedObjectScript == null)
+        {
+            objectDescription = "";
+        } else
+        {
+            objectDescription = collidedObjectScript.objectDescription;
+        }
+        GUI.backgroundColor = guiFieldColor;
+        GUI.Box(new Rect(Screen.height / 100 * textBoxHeightPercent, Screen.width / 100 * textBoxWidthPercent, Screen.width, 200), objectDescription);
 
-    //void RenderText()
-    //{
-    //    var textArea = new Rect(0, 0, Screen.width, Screen.height);
-    //    GUI.Label(textArea, objectDescription);
-    //}
+    }
 }

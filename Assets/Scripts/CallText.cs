@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CallText : MonoBehaviour {
     public string objectDescription;
+    
 
 	// Use this for initialization
 	void Start () {
@@ -14,10 +15,4 @@ public class CallText : MonoBehaviour {
 	void Update () {
 		
 	}
-
-    public void RenderText()
-    {
-        var textArea = new Rect(0, 0, Screen.width, Screen.height);
-        GUI.Label(textArea, objectDescription);
-    }
 }
