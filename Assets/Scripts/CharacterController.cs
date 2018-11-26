@@ -25,6 +25,12 @@ public class CharacterController : MonoBehaviour {
     public int textBoxHeightPercent;
     public int textBoxWidthPercent;
     public Color guiFieldColor;
+    char[] typeText;
+
+    //заебала эта помойка
+    private int currentPosition = 0;
+    public float Delay = 0.1f;
+    public string additionalLines;
 
 
     // Use this for initialization
@@ -103,6 +109,9 @@ public class CharacterController : MonoBehaviour {
                 //Debug.Log("Interacing with " + collidedObject);
                 Debug.Log("Interacting with " + collidedGameObject);
                 collidedObjectScript = collidedGameObject.GetComponent<CallText>();
+                var splittedString = collidedObjectScript.objectDescription.Split(" "[0]);
+                typeText = collidedObjectScript.objectDescription.ToCharArray();
+                Debug.Log(typeText);
             }
         }
 
@@ -129,7 +138,7 @@ public class CharacterController : MonoBehaviour {
     }
 
     private void OnGUI()
-    {
+    { 
         if (collidedObjectScript == null)
         {
             objectDescription = "";
@@ -137,8 +146,20 @@ public class CharacterController : MonoBehaviour {
         {
             objectDescription = collidedObjectScript.objectDescription;
         }
-        GUI.backgroundColor = guiFieldColor;
-        GUI.Box(new Rect(Screen.height / 100 * textBoxHeightPercent, Screen.width / 100 * textBoxWidthPercent, Screen.width, 200), objectDescription);
+        var temp = StartCoroutine(AnimateText(objectDescription));
 
+        GUI.backgroundColor = guiFieldColor;
+        //GUI.Box(new Rect(Screen.height / 100 * textBoxHeightPercent, Screen.width / 100 * textBoxWidthPercent, Screen.width, 200), temp);
+    }
+
+    IEnumerator AnimateText(string strComplete)
+    {
+        int i = 0;
+        string str  = "";
+        while( i < strComplete.Length)
+        {
+            strComplete += strComplete[i++];
+            yield return new WaitForSeconds(0.5F);
+        }
     }
 }
