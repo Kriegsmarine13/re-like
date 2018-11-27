@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\CharacterController.cs" />
     <Compile Include="Assets\Scripts\HandgunScript.cs" />
     <Compile Include="Assets\Scripts\SimpleEnemyController.cs" />
+    <Compile Include="Assets\Scripts\Typewrite.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/drums/Documents/New Unity Project/re-like/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

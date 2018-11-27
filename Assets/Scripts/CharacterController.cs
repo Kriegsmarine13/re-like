@@ -109,9 +109,10 @@ public class CharacterController : MonoBehaviour {
                 //Debug.Log("Interacing with " + collidedObject);
                 Debug.Log("Interacting with " + collidedGameObject);
                 collidedObjectScript = collidedGameObject.GetComponent<CallText>();
-                var splittedString = collidedObjectScript.objectDescription.Split(" "[0]);
-                typeText = collidedObjectScript.objectDescription.ToCharArray();
-                Debug.Log(typeText);
+                if (collidedObjectScript != null)
+                {
+                    collidedObjectScript.TypewriteText();
+                }
             }
         }
 
@@ -135,31 +136,5 @@ public class CharacterController : MonoBehaviour {
         interactionState = true;
         collidedObject = collision;
         Debug.Log("Interaction State active!");
-    }
-
-    private void OnGUI()
-    { 
-        if (collidedObjectScript == null)
-        {
-            objectDescription = "";
-        } else
-        {
-            objectDescription = collidedObjectScript.objectDescription;
-        }
-        var temp = StartCoroutine(AnimateText(objectDescription));
-
-        GUI.backgroundColor = guiFieldColor;
-        //GUI.Box(new Rect(Screen.height / 100 * textBoxHeightPercent, Screen.width / 100 * textBoxWidthPercent, Screen.width, 200), temp);
-    }
-
-    IEnumerator AnimateText(string strComplete)
-    {
-        int i = 0;
-        string str  = "";
-        while( i < strComplete.Length)
-        {
-            strComplete += strComplete[i++];
-            yield return new WaitForSeconds(0.5F);
-        }
     }
 }
